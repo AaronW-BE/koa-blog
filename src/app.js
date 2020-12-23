@@ -5,6 +5,9 @@ const njs = require('koa-nunjucks-2');
 const path = require('path');
 const config = require('../config/config');
 
+const blog = require('./store/blog');
+const posts = require('./store/posts');
+
 const route = new Route();
 const app = new Koa();
 
@@ -17,20 +20,27 @@ app.use(njs({
 }));
 
 route.get('/', async ctx => {
-    let time = new Date();
     await ctx.render('index', {
-        name: "my blog",
-        date: time
+        blog,
+        posts
     })
 });
 
 route.get('/posts', async ctx => {
     await ctx.render('posts', {
-        posts: [
-            {title: '这是第一个日志', description: '', author: ''},
-            {title: '这是第一个日志', description: '', author: ''},
-            {title: '这是第一个日志', description: '', author: ''}
-        ]
+        posts
+    });
+});
+
+route.get('/posts/:id', async ctx => {
+    const {id} = ctx.params;
+    let post = posts.find(item => String(item.id) === String(id));
+    if (!post) {
+        ctx.status = 404;
+        return;
+    }
+    await ctx.render('post', {
+        post
     });
 });
 

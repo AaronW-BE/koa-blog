@@ -1,0 +1,29 @@
+a, a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+.card {
+    border: 1px solid #dcdcdc;
+}
+
+.card .card-header {
+    padding: 10px;
+    background-color: #dedede;
+}
+
+.card .card-body {
+    margin: 15px;
+    padding: 15px;
+    border-top: 1px solid #d9d9d9;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.row .col {
+
+}
