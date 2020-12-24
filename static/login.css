@@ -1,0 +1,21 @@
+.login-form-wrp {
+    width: 360px;
+    height: 400px;
+    box-shadow: 0 0 30px 12px #ececec;
+    margin: 100px auto;
+    text-align: center;
+
+}
+
+.login-form-wrp .title {
+    font-size: 30px;
+    padding: 20px;
+    font-weight: bold;
+    background-image: linear-gradient(-20deg,#6e45e2,#88d3ce);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.login-form-item {
+
+}

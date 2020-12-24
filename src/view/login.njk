@@ -1,0 +1,22 @@
+{% extends "layout/blog.njk" %}
+
+{% block styles %}
+<link rel="stylesheet" href="/login.css">
+{% endblock %}
+
+{% block body %}
+    <div class="login-form-wrp">
+        <div class="title">
+            Login
+        </div>
+        <div class="form-item">
+            <input class="input-control" type="text" placeholder="请输入用户名" />
+        </div>
+        <div class="form-item">
+            <input class="input-control" type="password" placeholder="请输入密码">
+        </div>
+        <div class="form-item">
+            <button class="btn btn-block">登录</button>
+        </div>
+    </div>
+{% endblock %}

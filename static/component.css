@@ -27,3 +27,40 @@ a, a:visited {
 .row .col {
 
 }
+
+.form-item {
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.input-control {
+    outline: none;
+    border: 1px solid #dcdcdc;
+    padding: 6px 8px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 17px;
+}
+
+.input-control:focus {
+    border-color: #6699ff;
+}
+
+input.input-control::placeholder {
+    font-size: 16px;
+}
+
+.btn {
+    outline: none;
+    background: #69f;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.btn.btn-block {
+    display: block;
+    width: 100%;
+}

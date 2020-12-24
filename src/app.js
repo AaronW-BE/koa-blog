@@ -19,9 +19,13 @@ app.use(njs({
     }
 }));
 
+app.use(async (ctx, next) => {
+    ctx.state.blog = blog;
+    return next();
+});
+
 route.get('/', async ctx => {
     await ctx.render('index', {
-        blog,
         posts
     })
 });
@@ -29,7 +33,6 @@ route.get('/', async ctx => {
 route.get('/posts', async ctx => {
     await ctx.render('posts', {
         posts,
-        blog,
     });
 });
 
@@ -42,8 +45,11 @@ route.get('/posts/:id', async ctx => {
     }
     await ctx.render('post', {
         post,
-        blog
     });
+});
+
+route.get('/login.html', async ctx => {
+    await ctx.render('login');
 });
 
 app.use(route.routes());
