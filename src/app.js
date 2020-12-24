@@ -28,7 +28,8 @@ route.get('/', async ctx => {
 
 route.get('/posts', async ctx => {
     await ctx.render('posts', {
-        posts
+        posts,
+        blog,
     });
 });
 
@@ -40,7 +41,8 @@ route.get('/posts/:id', async ctx => {
         return;
     }
     await ctx.render('post', {
-        post
+        post,
+        blog
     });
 });
 

@@ -1,1 +1,22 @@
-{{post.title}}
+{% extends "layout/blog.njk" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/post.css">
+{% endblock %}
+
+{% block left %}
+    <section class="post-container">
+        <header>
+            <h1 class="title">{{post.title}}</h1>
+        </header>
+        <section class="content">{{post.content}}</section>
+        <footer class="footer"></footer>
+    </section>
+{% endblock %}
+
+{% block right %}
+    <div class="card">
+        <div class="card-header">目录</div>
+        <div class="card-body"></div>
+    </div>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>首页</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/component.css">
+
+    {% block styles %}{% endblock %}
+</head>
+<body>
+<header class="nav-bar-wrp">
+    <span class="blog-name">{{blog.name}}</span>
+    <ul class="nav-link-wrp">
+        <li class="link active">
+            <a href="/">首页</a>
+        </li>
+        <li class="link">
+            <a href="/posts">归档</a>
+        </li>
+        <!--           <li>分类</li>-->
+    </ul>
+</header>
+<section class="main-container">
+    {% block body %}
+    <div class="row">
+        <div class="col">
+            {% block left %}
+            {% endblock %}
+        </div>
+        <div class="col">
+            {% block right %}
+            {% endblock %}
+        </div>
+    </div>
+    {% endblock %}
+</section>
+
+<footer class="footer-wrp">
+    &copy; {{blog.nickName}}
+</footer>
+
+</body>
+</html>

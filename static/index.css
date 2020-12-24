@@ -31,10 +31,9 @@ ul.nav-link-wrp li {
     font-weight: bold;
 }
 
-
 .main-container {
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 300px;
+    padding-right: 300px;
     padding-top: 35px;
 }
 .main-container .posts-list-wrp {

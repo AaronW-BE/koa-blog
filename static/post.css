@@ -1,0 +1,11 @@
+.post-container {
+
+}
+
+.post-container .title {
+    font-size: 26px;
+}
+
+.post-container .content {
+    width: 760px;
+}

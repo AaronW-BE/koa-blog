@@ -1,79 +1,25 @@
-<!doctype html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>首页</title>
-    <link rel="stylesheet" href="/index.css">
-    <link rel="stylesheet" href="/component.css">
-</head>
-<body>
-    <header class="nav-bar-wrp">
-        <span class="blog-name">{{blog.name}}</span>
-        <ul class="nav-link-wrp">
-           <li class="link active">
-               <a href="/">首页</a>
-           </li>
-           <li class="link">
-               <a href="/posts">归档</a>
-           </li>
-<!--           <li>分类</li>-->
-        </ul>
-    </header>
-    <section class="main-container">
-        <div class="row">
-            <div class="col posts-list-wrp">
-                {% for item in posts %}
-                <div class="post-item">
-                    <div class="title">
-                        <a href="/posts/{{item.id}}">{{item.title}}</a>
-                    </div>
-                    <div class="summary">
-                        <p>{{item.summary}}</p>
-                    </div>
-                    <div class="footer">
-                        <span>2020年12月01日</span>
-                    </div>
-                </div>
-                {% endfor %}
+{% extends "layout/blog.njk" %}
 
-                <div class="pagination-wrp">第一页</div>
-
-            </div>
-            <div class="col side-blog-info-wrp">
-                <div class="profile">
-                    <div class="card">
-                        <div class="card-header"><span>Card Title</span></div>
-                        <div class="card-body">
-                            <div class="profile-self-info">
-                                <div>
-                                    <img class="profile-avatar" src="{{blog.avatar}}" alt="">
-                                </div>
-                                <div>
-                                    <div>{{blog.nickName}}</div>
-                                    <div>{{blog.location}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="categories">
-                    <div class="card">
-                        <div class="card-header">所有标签</div>
-                        <div class="card-body"></div>
-                    </div>
-                </div>
-
-            </div>
-
+{% block left %}
+<div class="posts-list-wrp">
+    {% for item in posts %}
+    <div class="post-item">
+        <div class="title">
+            <a href="/posts/{{item.id}}">{{item.title}}</a>
         </div>
+        <div class="summary">
+            <p>{{item.summary}}</p>
+        </div>
+        <div class="footer">
+            <span>2020年12月01日</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="pagination-wrp">第一页</div>
+{% endblock %}
 
-    </section>
+{% block right %}
+    {% include "components/blogInfo.njk" %}
+{% endblock %}
 
-    <footer class="footer-wrp">
-        &copy; {{blog.nickName}}
-    </footer>
-</body>
-</html>
