@@ -1,0 +1,14 @@
+{% extends "layout/blog.njk" %}
+
+{% block body %}
+    {% if status %}
+        <h1>登录成功</h1>
+    {% else %}
+        <h1>登录出错，请重新登录,3s后自动返回</h1>
+        <script>
+            setTimeout(() => {
+                history.go(-1);
+            }, 3000);
+        </script>
+    {% endif %}
+{% endblock %}

@@ -3,6 +3,10 @@ const Route = require('@koa/router');
 const KoaStatic = require('koa-static');
 const njs = require('koa-nunjucks-2');
 const path = require('path');
+const bodyParser = require('koa-bodyparser');
+
+const logger = require('koa-logger')
+
 const config = require('../config/config');
 
 const blog = require('./store/blog');
@@ -23,6 +27,9 @@ app.use(async (ctx, next) => {
     ctx.state.blog = blog;
     return next();
 });
+
+app.use(logger());
+app.use(bodyParser());
 
 route.get('/', async ctx => {
     await ctx.render('index', {
@@ -49,7 +56,19 @@ route.get('/posts/:id', async ctx => {
 });
 
 route.get('/login.html', async ctx => {
+
     await ctx.render('login');
+});
+
+route.post('/login.html', async ctx => {
+    const {username, password} = ctx.request.body;
+    let status = false;
+    if (username === blog.username && password === blog.password) {
+        status = true;
+    }
+    return ctx.render('login-result', {
+        status
+    })
 });
 
 app.use(route.routes());

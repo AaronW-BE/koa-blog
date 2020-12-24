@@ -12,6 +12,8 @@
   "dependencies": {
     "@koa/router": "^10.0.0",
     "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-logger": "^3.2.1",
     "koa-nunjucks-2": "^3.0.2",
     "koa-static": "^5.0.0",
     "mongoose": "^5.11.8"
