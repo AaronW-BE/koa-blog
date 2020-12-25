@@ -6,15 +6,22 @@ body {
 
 .nav-bar-wrp {
     box-shadow: 0 1px 5px 0 #b3b3b3;
-    padding: 10px 250px;
 }
 
-.nav-bar-wrp .blog-name {
+.nav-bar-wrp .content {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-bar-wrp .content .blog-name {
     font-weight: bold;
     font-size: 22px;
 }
 
-.nav-bar-wrp ul {
+.nav-bar-wrp .content ul {
     display: inline-block;
     list-style: none;
 }
@@ -24,7 +31,8 @@ ul.nav-link-wrp li {
 }
 
 .nav-link-wrp .link{
-    margin-left: 10px;
+    margin-left: 8px;
+    padding: 10px 4px;
 }
 
 .nav-link-wrp .link.active{
@@ -32,9 +40,9 @@ ul.nav-link-wrp li {
 }
 
 .main-container {
-    padding-left: 300px;
-    padding-right: 300px;
     padding-top: 35px;
+    margin: 0 auto;
+    width: 1200px;
 }
 .main-container .posts-list-wrp {
     width: 700px;

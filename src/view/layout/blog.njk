@@ -13,16 +13,18 @@
 </head>
 <body>
 <header class="nav-bar-wrp">
-    <span class="blog-name">{{blog.name}}</span>
-    <ul class="nav-link-wrp">
-        <li class="link active">
-            <a href="/">首页</a>
-        </li>
-        <li class="link">
-            <a href="/posts">归档</a>
-        </li>
-        <!--           <li>分类</li>-->
-    </ul>
+    <div class="content">
+        <span class="blog-name">{{blog.name}}</span>
+        <ul class="nav-link-wrp">
+            <li class="link active">
+                <a href="/">首页</a>
+            </li>
+            <li class="link">
+                <a href="/posts">归档</a>
+            </li>
+            <li class="link">分类</li>
+        </ul>
+    </div>
 </header>
 <section class="main-container">
     {% block body %}
