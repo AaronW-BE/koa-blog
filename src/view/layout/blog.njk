@@ -12,6 +12,7 @@
     {% block styles %}{% endblock %}
 </head>
 <body>
+{% block header %}
 <header class="nav-bar-wrp">
     <div class="content">
         <span class="blog-name">{{blog.name}}</span>
@@ -26,6 +27,7 @@
         </ul>
     </div>
 </header>
+{% endblock %}
 <section class="main-container">
     {% block body %}
     <div class="row">
@@ -41,9 +43,11 @@
     {% endblock %}
 </section>
 
+{% block footer %}
 <footer class="footer-wrp">
     &copy; {{blog.nickName}}
 </footer>
+{% endblock %}
 
 </body>
 </html>

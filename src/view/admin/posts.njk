@@ -1,0 +1,27 @@
+{% extends "../layout/admin.njk" %}
+
+{% block body %}
+    {% for post in posts %}
+        <div>
+            <a href="/admin/posts/{{post.id}}">{{loop.index}}. {{post.title}}</a>
+        </div>
+        <div>
+            <a href="/admin/posts/remove?id={{post.id}}">删除</a>
+            <a href="/posts/{{post.id}}" target="_blank">查看</a>
+        </div>
+    {% endfor %}
+
+    <div>
+        <form action="/admin/posts/create" method="post">
+            <label for="title">
+                标题
+                <input type="text" name="title" id="title" />
+            </label>
+            <label for="content">
+                <textarea id="content" name="content"></textarea>
+            </label>
+            <button type="submit">保存</button>
+            <button type="reset">重置</button>
+        </form>
+    </div>
+{% endblock %}

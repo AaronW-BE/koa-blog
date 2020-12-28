@@ -9,8 +9,8 @@ const logger = require('koa-logger')
 
 const config = require('../config/config');
 
-const blog = require('./store/blog');
-const posts = require('./store/posts');
+let blog = require('./store/blog');
+let posts = require('./store/posts');
 
 const route = new Route();
 const app = new Koa();
@@ -69,6 +69,43 @@ route.post('/login.html', async ctx => {
     return ctx.render('login-result', {
         status
     })
+});
+
+route.get('/admin', async ctx => {
+    return ctx.render('admin/index');
+});
+
+route.get('/admin/posts', async ctx => {
+    return ctx.render('admin/posts', {
+        posts
+    });
+});
+
+route.get('/admin/posts/remove', async ctx => {
+    let {id} = ctx.query;
+    console.log('post id is ', id);
+    const postIndex = posts.findIndex(post => String(post.id) === String(id));
+    if (postIndex !== -1) {
+        posts.splice(postIndex, 1);
+        ctx.redirect('/admin/posts');
+        return;
+    }
+    ctx.body = "删除失败，文章不存在";
+});
+
+route.post('/admin/posts/create', async ctx => {
+    let {title, content} = ctx.request.body;
+    console.log(title, content);
+    let id = posts[posts.length - 1].id ;
+    posts.push({
+        id: ++id,
+        title, content, summary: "日志 summary",
+    })
+    return ctx.redirect('/admin/posts');
+});
+
+route.get('/admin/blog', async ctx => {
+    return ctx.render('admin/blog');
 });
 
 app.use(route.routes());
