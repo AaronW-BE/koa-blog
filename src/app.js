@@ -4,8 +4,9 @@ const KoaStatic = require('koa-static');
 const njs = require('koa-nunjucks-2');
 const path = require('path');
 const bodyParser = require('koa-bodyparser');
+const session = require('koa-session');
 
-const logger = require('koa-logger')
+const logger = require('koa-logger');
 
 const config = require('../config/config');
 
@@ -14,6 +15,12 @@ let posts = require('./store/posts');
 
 const route = new Route();
 const app = new Koa();
+
+app.keys = ['koa blog 1231213'];
+
+app.use(session({
+    key: 'koa.sess',
+}, app));
 
 app.use(njs({
     path: path.join(__dirname, 'view'),
@@ -32,6 +39,8 @@ app.use(logger());
 app.use(bodyParser());
 
 route.get('/', async ctx => {
+    ctx.session.userName = "aa";
+    console.log(ctx.session);
     await ctx.render('index', {
         posts
     })
