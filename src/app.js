@@ -12,6 +12,7 @@ const config = require('../config/config');
 
 let blog = require('./store/blog');
 let posts = require('./store/posts');
+const {checkAuth} = require("./middlewares/checkAuth");
 
 const route = new Route();
 const app = new Koa();
@@ -39,8 +40,6 @@ app.use(logger());
 app.use(bodyParser());
 
 route.get('/', async ctx => {
-    ctx.session.userName = "aa";
-    console.log(ctx.session);
     await ctx.render('index', {
         posts
     })
@@ -65,7 +64,6 @@ route.get('/posts/:id', async ctx => {
 });
 
 route.get('/login.html', async ctx => {
-
     await ctx.render('login');
 });
 
@@ -74,17 +72,18 @@ route.post('/login.html', async ctx => {
     let status = false;
     if (username === blog.username && password === blog.password) {
         status = true;
+        ctx.cookies.set('is_login', true);
     }
     return ctx.render('login-result', {
         status
     })
 });
 
-route.get('/admin', async ctx => {
+route.get('/admin', checkAuth(), ctx => {
     return ctx.render('admin/index');
 });
 
-route.get('/admin/posts', async ctx => {
+route.get('/admin/posts', checkAuth(), ctx => {
     return ctx.render('admin/posts', {
         posts
     });
@@ -92,7 +91,6 @@ route.get('/admin/posts', async ctx => {
 
 route.get('/admin/posts/remove', async ctx => {
     let {id} = ctx.query;
-    console.log('post id is ', id);
     const postIndex = posts.findIndex(post => String(post.id) === String(id));
     if (postIndex !== -1) {
         posts.splice(postIndex, 1);
