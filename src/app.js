@@ -19,9 +19,7 @@ const app = new Koa();
 
 app.keys = ['koa blog 1231213'];
 
-app.use(session({
-    key: 'koa.sess',
-}, app));
+app.use(session({}, app));
 
 app.use(njs({
     path: path.join(__dirname, 'view'),
@@ -33,6 +31,9 @@ app.use(njs({
 
 app.use(async (ctx, next) => {
     ctx.state.blog = blog;
+    if (ctx.session.username && ctx.session.isLogin) {
+        ctx.state.username = ctx.session.username;
+    }
     return next();
 });
 
@@ -64,6 +65,10 @@ route.get('/posts/:id', async ctx => {
 });
 
 route.get('/login.html', async ctx => {
+    if (ctx.session.isLogin && ctx.session.username) {
+        ctx.redirect('/admin');
+        return ;
+    }
     await ctx.render('login');
 });
 
@@ -72,11 +77,17 @@ route.post('/login.html', async ctx => {
     let status = false;
     if (username === blog.username && password === blog.password) {
         status = true;
-        ctx.cookies.set('is_login', true);
+        ctx.session.isLogin = true;
+        ctx.session.username = username;
     }
     return ctx.render('login-result', {
         status
     })
+});
+
+route.get('/user/logout', async ctx => {
+    ctx.session = null;
+    ctx.redirect('/')
 });
 
 route.get('/admin', checkAuth(), ctx => {

@@ -45,7 +45,11 @@
 
 {% block footer %}
 <footer class="footer-wrp">
-    &copy; {{blog.nickName}} <a href="/login.html">登录</a>
+    {% if username %}
+    <a href="/user/logout">退出登录</a>
+    {% else %}
+        &copy; {{blog.nickName}} <a href="/login.html">登录</a>
+    {% endif %}
 </footer>
 {% endblock %}
 

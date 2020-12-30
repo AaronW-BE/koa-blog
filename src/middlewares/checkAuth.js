@@ -1,7 +1,7 @@
 
 const checkAuth = (options) => {
     return async (ctx, next) => {
-        if (ctx.cookies.get('is_login')) {
+        if (ctx.session.isLogin && ctx.session.username) {
             return  next()
         }
         ctx.set('content-type', 'text/html;charset=utf8');

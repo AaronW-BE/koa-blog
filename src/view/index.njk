@@ -6,6 +6,9 @@
     <div class="post-item">
         <div class="title">
             <a href="/posts/{{item.id}}">{{item.title}}</a>
+            {% if username %}
+                <a href="/admin/posts/">编辑</a>
+            {% endif %}
         </div>
         <div class="summary">
             <p>{{item.summary}}</p>
